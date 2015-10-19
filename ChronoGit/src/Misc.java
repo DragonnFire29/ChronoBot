@@ -7,6 +7,7 @@ public class Misc {
 	// specified TilePosition aroundTile, or null if not found. (builder parameter is our worker)
 	
 	static boolean lastBuildTileFailed = false;
+	@SuppressWarnings("unused")
 	public static TilePosition getBuildTile(Unit builder, UnitType buildingType, TilePosition aroundTile) {
 		TilePosition ret = null;
 		int maxDist = 3;

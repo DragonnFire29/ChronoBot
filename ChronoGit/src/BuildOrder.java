@@ -1,7 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-import bwapi.Order;
 import bwapi.Unit;
 import bwapi.UnitType;
 import bwta.BWTA;
