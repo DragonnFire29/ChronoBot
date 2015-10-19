@@ -1,0 +1,266 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x65e84dc0, pid=6256, tid=5424
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_60-b27) (build 1.8.0_60-b27)
+# Java VM: Java HotSpot(TM) Client VM (25.60-b23 mixed mode windows-x86 )
+# Problematic frame:
+# C  [bwapi_bridge1_2.dll+0x64dc0]
+#
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0232bc00):  JavaThread "main" [_thread_in_native, id=5424, stack(0x007c0000,0x00810000)]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x00000002
+
+Registers:
+EAX=0x65e2bc40, EBX=0x14844500, ECX=0x00000002, EDX=0x00000000
+ESP=0x0080f520, EBP=0x0080f528, ESI=0x14844500, EDI=0x0232bc00
+EIP=0x65e84dc0, EFLAGS=0x00010287
+
+Top of Stack: (sp=0x0080f520)
+0x0080f520:   65e86975 65e2bc4b 0080f570 02501be1
+0x0080f530:   0232bd40 0080f588 00000002 00000000
+0x0080f540:   025017c0 14865b80 14844500 02501796
+0x0080f550:   0080f550 14844500 0080f588 148446e8
+0x0080f560:   00000000 14844500 00000000 0080f580
+0x0080f570:   0080f5ac 024f4394 00000000 024fbfd6
+0x0080f580:   00000002 00000000 04732a98 0080f58c
+0x0080f590:   14844325 0080f5b4 148446e8 00000000 
+
+Instructions: (pc=0x65e84dc0)
+0x65e84da0:   0d 00 00 00 00 5b 81 c4 90 00 00 00 c3 cc cc cc
+0x65e84db0:   8b c1 8b 4c 24 04 89 08 c2 04 00 cc cc cc cc cc
+0x65e84dc0:   8b 01 c3 cc cc cc cc cc cc cc cc cc cc cc cc cc
+0x65e84dd0:   56 8b f1 57 8d 7e 04 8b cf c7 06 00 00 00 00 e8 
+
+
+Register to memory mapping:
+
+EAX=0x65e2bc40 is an unknown value
+EBX={method} {0x14844504} 'c_str_native' '(J)Ljava/lang/String;' in 'bwapi/PlayerType'
+ECX=0x00000002 is an unknown value
+EDX=0x00000000 is an unknown value
+ESP=0x0080f520 is pointing into the stack for thread: 0x0232bc00
+EBP=0x0080f528 is pointing into the stack for thread: 0x0232bc00
+ESI={method} {0x14844504} 'c_str_native' '(J)Ljava/lang/String;' in 'bwapi/PlayerType'
+EDI=0x0232bc00 is a thread
+
+
+Stack: [0x007c0000,0x00810000],  sp=0x0080f520,  free space=317k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [bwapi_bridge1_2.dll+0x64dc0]
+j  bwapi.PlayerType.c_str_native(J)Ljava/lang/String;+0
+j  bwapi.PlayerType.c_str()Ljava/lang/String;+5
+j  bwapi.PlayerType.toString()Ljava/lang/String;+1
+j  java.lang.String.valueOf(Ljava/lang/Object;)Ljava/lang/String;+10
+j  java.lang.StringBuilder.append(Ljava/lang/Object;)Ljava/lang/StringBuilder;+2
+j  CustomUI.drawScreenUI(I)V+276
+j  ChronoBot.onFrame()V+1
+j  bwapi.AIModule.onFrame()V+11
+v  ~StubRoutines::call_stub
+V  [jvm.dll+0x158985]
+V  [jvm.dll+0x21df3e]
+V  [jvm.dll+0x158a1e]
+V  [jvm.dll+0xdacfb]
+V  [jvm.dll+0xddc8c]
+C  [bwapi_bridge1_2.dll+0x107a]
+C  [bwapi_bridge1_2.dll+0x2828f]
+j  bwapi.Mirror.startGame()V+0
+j  ChronoBot.run()V+13
+j  ChronoBot.main([Ljava/lang/String;)V+7
+v  ~StubRoutines::call_stub
+V  [jvm.dll+0x158985]
+V  [jvm.dll+0x21df3e]
+V  [jvm.dll+0x158a1e]
+V  [jvm.dll+0xdaac7]
+V  [jvm.dll+0xe305f]
+C  [javaw.exe+0x229a]
+C  [javaw.exe+0xaebf]
+C  [javaw.exe+0xaf49]
+C  [KERNEL32.DLL+0x1a534]
+C  [ntdll.dll+0x48f8b]
+C  [ntdll.dll+0x48f61]
+C  0x00000000
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  bwapi.PlayerType.c_str_native(J)Ljava/lang/String;+0
+j  bwapi.PlayerType.c_str()Ljava/lang/String;+5
+j  bwapi.PlayerType.toString()Ljava/lang/String;+1
+j  java.lang.String.valueOf(Ljava/lang/Object;)Ljava/lang/String;+10
+j  java.lang.StringBuilder.append(Ljava/lang/Object;)Ljava/lang/StringBuilder;+2
+j  CustomUI.drawScreenUI(I)V+276
+j  ChronoBot.onFrame()V+1
+j  bwapi.AIModule.onFrame()V+11
+v  ~StubRoutines::call_stub
+j  bwapi.Mirror.startGame()V+0
+j  ChronoBot.run()V+13
+j  ChronoBot.main([Ljava/lang/String;)V+7
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x14ac4400 JavaThread "Service Thread" daemon [_thread_blocked, id=7176, stack(0x153d0000,0x15420000)]
+  0x14aa1400 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=6864, stack(0x15340000,0x15390000)]
+  0x14a97c00 JavaThread "JDWP Command Reader" daemon [_thread_in_native, id=6356, stack(0x152b0000,0x15300000)]
+  0x14a94c00 JavaThread "JDWP Event Helper Thread" daemon [_thread_blocked, id=7152, stack(0x15220000,0x15270000)]
+  0x14a92400 JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_blocked, id=180, stack(0x15190000,0x151e0000)]
+  0x14a84000 JavaThread "Attach Listener" daemon [_thread_blocked, id=3416, stack(0x14e20000,0x14e70000)]
+  0x14a82000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=5632, stack(0x14d90000,0x14de0000)]
+  0x14a67c00 JavaThread "Finalizer" daemon [_thread_blocked, id=5316, stack(0x14c60000,0x14cb0000)]
+  0x14a63400 JavaThread "Reference Handler" daemon [_thread_blocked, id=5800, stack(0x04530000,0x04580000)]
+=>0x0232bc00 JavaThread "main" [_thread_in_native, id=5424, stack(0x007c0000,0x00810000)]
+
+Other Threads:
+  0x024ecc00 VMThread [stack: 0x00db0000,0x00e00000] [id=7308]
+  0x14ad7800 WatcherThread [stack: 0x15460000,0x154b0000] [id=4496]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ def new generation   total 4928K, used 1343K [0x04600000, 0x04b50000, 0x09b50000)
+  eden space 4416K,  30% used [0x04600000, 0x0474ff68, 0x04a50000)
+  from space 512K,   0% used [0x04a50000, 0x04a50000, 0x04ad0000)
+  to   space 512K,   0% used [0x04ad0000, 0x04ad0000, 0x04b50000)
+ tenured generation   total 10944K, used 0K [0x09b50000, 0x0a600000, 0x14600000)
+   the space 10944K,   0% used [0x09b50000, 0x09b50000, 0x09b50200, 0x0a600000)
+ Metaspace       used 1996K, capacity 2472K, committed 2496K, reserved 4480K
+
+Card table byte_map: [0x02330000,0x023c0000] byte_map_base: 0x0230d000
+
+Polling page: 0x007a0000
+
+CodeCache: size=32768Kb used=688Kb max_used=688Kb free=32079Kb
+ bounds [0x024f0000, 0x025a0000, 0x044f0000]
+ total_blobs=167 nmethods=30 adapters=76
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 9.758 Thread 0x14aa1400   26             java.lang.String::startsWith (7 bytes)
+Event: 9.759 Thread 0x14aa1400 nmethod 26 0x0259b648 code [0x0259b740, 0x0259b7ec]
+Event: 13.368 Thread 0x14aa1400   27             java.lang.Long::valueOf (36 bytes)
+Event: 13.368 Thread 0x14aa1400 nmethod 27 0x0259b848 code [0x0259b950, 0x0259bad0]
+Event: 13.368 Thread 0x14aa1400   28             java.lang.Long::<init> (10 bytes)
+Event: 13.368 Thread 0x14aa1400 nmethod 28 0x0259bc08 code [0x0259bd00, 0x0259bd90]
+Event: 13.368 Thread 0x14aa1400   29             java.lang.Long::hashCode (8 bytes)
+Event: 13.368 Thread 0x14aa1400 nmethod 29 0x0259be08 code [0x0259bf00, 0x0259bfa0]
+Event: 13.368 Thread 0x14aa1400   30             java.lang.Long::hashCode (8 bytes)
+Event: 13.369 Thread 0x14aa1400 nmethod 30 0x0259c008 code [0x0259c100, 0x0259c1a0]
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (2 events):
+Event: 0.111 Thread 0x0232bc00 Exception <a 'java/lang/NoSuchMethodError': Method sun.misc.Unsafe.defineClass(Ljava/lang/String;[BII)Ljava/lang/Class; name or signature does not match> (0x0460b6a0) thrown at [D:\re\puppet\workspace\8-2-build-windows-i586-cygwin\jdk8u60\4407\hotspot\src\V€RÈKáº?
+Event: 0.111 Thread 0x0232bc00 Exception <a 'java/lang/NoSuchMethodError': Method sun.misc.Unsafe.prefetchRead(Ljava/lang/Object;J)V name or signature does not match> (0x0460b970) thrown at [D:\re\puppet\workspace\8-2-build-windows-i586-cygwin\jdk8u60\4407\hotspot\src\share\vm\prims\jni
+
+Events (10 events):
+Event: 12.414 loading class bwta/BWTA
+Event: 12.414 loading class bwta/BWTA done
+Event: 13.370 loading class CustomUI
+Event: 13.370 loading class CustomUI done
+Event: 13.386 loading class bwta/BaseLocation
+Event: 13.386 loading class bwta/BaseLocation done
+Event: 13.389 loading class java/util/ArrayList$Itr
+Event: 13.389 loading class java/util/ArrayList$Itr done
+Event: 13.904 loading class java/lang/Long$LongCache
+Event: 13.904 loading class java/lang/Long$LongCache done
+
+
+Dynamic libraries:
+0x00e00000 - 0x00e33000 	C:\Program Files (x86)\Java\jre1.8.0_60\bin\javaw.exe
+0x76fc0000 - 0x77128000 	C:\Windows\SYSTEM32\ntdll.dll
+0x76db0000 - 0x76ef0000 	C:\Windows\SYSTEM32\KERNEL32.DLL
+0x76bf0000 - 0x76cbf000 	C:\Windows\SYSTEM32\KERNELBASE.dll
+0x74e50000 - 0x74ec7000 	C:\Windows\SYSTEM32\ADVAPI32.dll
+0x74d00000 - 0x74e50000 	C:\Windows\SYSTEM32\USER32.dll
+0x72440000 - 0x72625000 	C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9600.16384_none_a9f4965301334e09\COMCTL32.dll
+0x75090000 - 0x7514e000 	C:\Windows\SYSTEM32\msvcrt.dll
+0x74a10000 - 0x74a4e000 	C:\Windows\SYSTEM32\sechost.dll
+0x76b30000 - 0x76be1000 	C:\Windows\SYSTEM32\RPCRT4.dll
+0x74b60000 - 0x74c68000 	C:\Windows\SYSTEM32\GDI32.dll
+0x749f0000 - 0x74a0d000 	C:\Windows\SYSTEM32\SspiCli.dll
+0x749e0000 - 0x749e9000 	C:\Windows\SYSTEM32\CRYPTBASE.dll
+0x74980000 - 0x749d1000 	C:\Windows\SYSTEM32\bcryptPrimitives.dll
+0x74ed0000 - 0x74ef5000 	C:\Windows\system32\IMM32.DLL
+0x76670000 - 0x76767000 	C:\Windows\SYSTEM32\MSCTF.dll
+0x72200000 - 0x72277000 	C:\Program Files (x86)\AVG\AVG2015\avghookx.dll
+0x66040000 - 0x660ff000 	C:\Program Files (x86)\Java\jre1.8.0_60\bin\msvcr100.dll
+0x66100000 - 0x664c5000 	C:\Program Files (x86)\Java\jre1.8.0_60\bin\client\jvm.dll
+0x63ee0000 - 0x63ee8000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x71910000 - 0x71930000 	C:\Windows\SYSTEM32\WINMM.dll
+0x74970000 - 0x74978000 	C:\Windows\SYSTEM32\VERSION.dll
+0x75150000 - 0x75156000 	C:\Windows\SYSTEM32\PSAPI.DLL
+0x76d50000 - 0x76d9d000 	C:\Windows\SYSTEM32\WS2_32.dll
+0x718f0000 - 0x71910000 	C:\Windows\SYSTEM32\WINMMBASE.dll
+0x74f00000 - 0x74f07000 	C:\Windows\SYSTEM32\NSI.dll
+0x76d10000 - 0x76d4a000 	C:\Windows\SYSTEM32\cfgmgr32.dll
+0x72810000 - 0x7282f000 	C:\Windows\SYSTEM32\DEVOBJ.dll
+0x6e7a0000 - 0x6e7ac000 	C:\Program Files (x86)\Java\jre1.8.0_60\bin\verify.dll
+0x6d880000 - 0x6d8a1000 	C:\Program Files (x86)\Java\jre1.8.0_60\bin\java.dll
+0x67370000 - 0x67399000 	C:\Program Files (x86)\Java\jre1.8.0_60\bin\jdwp.dll
+0x6d230000 - 0x6d237000 	C:\Program Files (x86)\Java\jre1.8.0_60\bin\npt.dll
+0x6d540000 - 0x6d553000 	C:\Program Files (x86)\Java\jre1.8.0_60\bin\zip.dll
+0x75340000 - 0x764e1000 	C:\Windows\SYSTEM32\SHELL32.dll
+0x75160000 - 0x752ae000 	C:\Windows\SYSTEM32\combase.dll
+0x76cc0000 - 0x76d01000 	C:\Windows\SYSTEM32\SHLWAPI.dll
+0x74250000 - 0x742c7000 	C:\Windows\SYSTEM32\SHCORE.dll
+0x74950000 - 0x7495e000 	C:\Windows\SYSTEM32\profapi.dll
+0x66ea0000 - 0x66ea8000 	C:\Program Files (x86)\Java\jre1.8.0_60\bin\dt_socket.dll
+0x720a0000 - 0x720b0000 	C:\Windows\system32\napinsp.dll
+0x72000000 - 0x72014000 	C:\Windows\system32\pnrpnsp.dll
+0x71fe0000 - 0x71ff2000 	C:\Windows\system32\NLAapi.dll
+0x728c0000 - 0x72905000 	C:\Windows\System32\mswsock.dll
+0x72770000 - 0x727ec000 	C:\Windows\SYSTEM32\DNSAPI.dll
+0x71fd0000 - 0x71fd9000 	C:\Windows\System32\winrnr.dll
+0x723b0000 - 0x723f4000 	C:\Windows\System32\fwpuclnt.dll
+0x723a0000 - 0x723a7000 	C:\Windows\System32\rasadhlp.dll
+0x65e20000 - 0x66037000 	E:\Project Chrono\ChronoBot\bwapi_bridge1_2.dll
+0x154b0000 - 0x154db000 	E:\Project Chrono\ChronoBot\gmp-vc90-mt.dll
+0x154e0000 - 0x15521000 	E:\Project Chrono\ChronoBot\mpfr-vc90-mt.dll
+0x65d90000 - 0x65e1e000 	C:\Windows\WinSxS\x86_microsoft.vc90.crt_1fc8b3b9a1e18e3b_9.0.30729.8387_none_5094ca96bcb6b2bb\MSVCP90.dll
+0x664d0000 - 0x66573000 	C:\Windows\WinSxS\x86_microsoft.vc90.crt_1fc8b3b9a1e18e3b_9.0.30729.8387_none_5094ca96bcb6b2bb\MSVCR90.dll
+0x6d9e0000 - 0x6db28000 	C:\Windows\SYSTEM32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:53069 -Dfile.encoding=Cp1252 
+java_command: ChronoBot
+java_class_path (initial): E:\Project Chrono\ChronoBot\bin;E:\Project Chrono\ChronoBot\lib\bwmirror_v1_2.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:/Program Files (x86)/Java/jre1.8.0_60/bin/client;C:/Program Files (x86)/Java/jre1.8.0_60/bin;C:/Program Files (x86)/Java/jre1.8.0_60/lib/i386;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Skype\Phone\;C:\Users\Leo Henri\Desktop\eclipse;
+USERNAME=Leo Henri
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=AMD64 Family 22 Model 0 Stepping 1, AuthenticAMD
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 8.1 , 64 bit Build 9600 (6.3.9600.16384)
+
+CPU:total 4 (4 cores per cpu, 1 threads per core) family 22 model 0 stepping 1, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, clmul, mmxext, 3dnowpref, lzcnt, sse4a, tsc, tscinvbit, tscinv, bmi1
+
+Memory: 4k page, physical 8326016k(5168148k free), swap 9636736k(5583940k free)
+
+vm_info: Java HotSpot(TM) Client VM (25.60-b23) for windows-x86 JRE (1.8.0_60-b27), built on Aug  4 2015 10:57:40 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Thu Oct 01 23:36:32 2015
+elapsed time: 15 seconds (0d 0h 0m 15s)
+
