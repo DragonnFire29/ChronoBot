@@ -1,9 +1,16 @@
+package chrono.buildorder;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
 import bwapi.Unit;
 import bwapi.UnitType;
 import bwta.BWTA;
+import chrono.ChronoBot;
+import chrono.Misc;
+import chrono.base.BaseManagement;
+import chrono.base.ManagedBase;
+import chrono.scout.ScoutingSystem;
 
 public class BuildOrder
 {

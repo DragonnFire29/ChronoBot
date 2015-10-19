@@ -1,7 +1,13 @@
+package chrono;
+
 import bwapi.Player;
 import bwapi.Unit;
 import bwapi.UnitType;
 import bwta.BWTA;
+import chrono.base.BaseManagement;
+import chrono.base.ManagedBase;
+import chrono.buildorder.BuildOrder;
+import chrono.scout.ScoutingSystem;
 
 public class CustomUI {
 	public static final int UI_MINIMAL = 1;

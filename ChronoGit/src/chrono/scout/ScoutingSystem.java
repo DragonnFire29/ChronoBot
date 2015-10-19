@@ -1,7 +1,10 @@
+package chrono.scout;
+
 import bwapi.Order;
 import bwapi.Unit;
 import bwapi.UnitType;
 import bwta.BWTA;
+import chrono.ChronoBot;
 
 public class ScoutingSystem {
 	

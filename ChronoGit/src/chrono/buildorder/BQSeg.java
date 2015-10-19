@@ -1,10 +1,12 @@
+package chrono.buildorder;
+
 import bwapi.UnitType;
 
 public class BQSeg
 {
-	UnitType building;
-	int supplyAmount;
-	int supplyCap;
+	public UnitType building;
+	public int supplyAmount;
+	public int supplyCap;
 	
 	public static final UnitType GENERATE_NEXT = UnitType.Hero_Alan_Schezar;
 	

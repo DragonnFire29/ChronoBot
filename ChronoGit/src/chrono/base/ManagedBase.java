@@ -1,7 +1,11 @@
+package chrono.base;
+
 import bwapi.Player;
 import bwapi.Unit;
 import bwapi.UnitType;
 import bwta.BWTA;
+import chrono.ChronoBot;
+import chrono.buildorder.BuildOrder;
 
 public class ManagedBase {
 

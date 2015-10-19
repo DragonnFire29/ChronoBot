@@ -1,3 +1,5 @@
+package chrono.base;
+
 import bwta.BWTA;
 
 public class BaseManagement

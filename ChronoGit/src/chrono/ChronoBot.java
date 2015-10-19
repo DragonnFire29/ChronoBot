@@ -1,5 +1,14 @@
-import bwapi.*;
+package chrono;
+
+import bwapi.DefaultBWListener;
+import bwapi.Game;
+import bwapi.Mirror;
+import bwapi.Player;
+import bwapi.Unit;
 import bwta.BWTA;
+import chrono.base.BaseManagement;
+import chrono.buildorder.BuildOrder;
+import chrono.scout.ScoutingSystem;
 
 public class ChronoBot extends DefaultBWListener {
 
