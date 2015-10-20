@@ -6,6 +6,13 @@ import bwapi.UnitType;
 import bwta.BWTA;
 import chrono.ChronoBot;
 
+/**
+ * Scouting system for ChronoBot. Upon initialization, it takes the first living SCV it finds controls it, moving it from base to base
+ * in an effort to find the enemy. The scouting pattern is start locations first (in order of BWTA IDs), then it rotates all normal
+ * BaseLocations.
+ * @author Leo Henri
+ *
+ */
 public class ScoutingSystem {
 	
 	//Scout Tiers
@@ -25,6 +32,11 @@ public class ScoutingSystem {
 	public static int currentLocationID = 0;
 	public static boolean enemyFound = false;
 	
+	
+	/**
+	 * Runs the scouting system. This function allows for an autonomous scout to run through the map, checking each base for enemy
+	 * activity. If enemy activity is found, BaseManager should mark it as being occupied.
+	 */
 	public static void runScout()
 	{
 		//Check to see if our scout exists.
@@ -52,8 +64,10 @@ public class ScoutingSystem {
 			}
 		}
 	}
-	
-	public static void getNewScout()
+	/**
+	 * Fetches a new scout for the scouting system to use. Should never be called outside of SoutingSystem.
+	 */
+	private static void getNewScout()
 	{
 		UnitType scoutUnitType = UnitType.Terran_SCV;
 		if(scoutTier == ST_SCV)

@@ -119,22 +119,19 @@ public class ManagedBase {
 				//Set any idle workers to work, if we're not past the threshold.
 				if(u.getType() == UnitType.Terran_SCV)
 				{
-					//Gas production needs prioritization
-					for(Unit un:ChronoBot.game.getUnitsInRadius(u.getPosition(), 500))
-					{
-						if(MaxGasHarvesters > GasHarvesters)
-						{
-							if(un.getType() == UnitType.Terran_Refinery)
-							{
-								u.gather(un);
-							}
-						}
-					}
 					if(u.isIdle())
 					{
 						System.out.println("Idle found in base " + baseID);
 						for(Unit un:ChronoBot.game.getUnitsInRadius(u.getPosition(), 500))
 						{
+							//TODO: Piroritize gas production in some way. As of now, we tend to have too few gas workers.
+							if(MaxGasHarvesters > GasHarvesters)
+							{
+								if(un.getType() == UnitType.Terran_Refinery)
+								{
+									u.gather(un);
+								}
+							}
 							if(MaxMineralHarvesters > MineralHarvesters)
 							{
 								if(un.getType() == UnitType.Resource_Mineral_Field || un.getType() == UnitType.Resource_Mineral_Field_Type_2

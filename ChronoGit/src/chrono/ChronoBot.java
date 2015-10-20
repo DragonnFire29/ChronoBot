@@ -22,13 +22,6 @@ public class ChronoBot extends DefaultBWListener {
     }
 
     @Override
-    public void onUnitCreate(Unit unit) {
-    	/*
-        System.out.println("New unit " + unit.getType());
-        */
-    }
-
-    @Override
     public void onStart() {
         game = mirror.getGame();
         self = game.self();
@@ -45,10 +38,16 @@ public class ChronoBot extends DefaultBWListener {
         if(!game.isMultiplayer())
         {
         	game.sendText("Single Player game detected: Entering debug settings.");
+        	//Enable user input
         	game.enableFlag(1);
-            game.sendText("power overwhelming");
+        	//Enable invulnerability
+            //game.sendText("power overwhelming");
+        	//Give lots of cash
             //game.sendText("show me the money");
+        	//Enable fast building
             //game.sendText("operation cwal");
+        	//Enable full vision
+        	//game.sendText("black sheep wall");
         }
         else
         {
@@ -81,9 +80,14 @@ public class ChronoBot extends DefaultBWListener {
     }
     
     @Override
-    public void onEnd(boolean b)
-    {
-    	
+    public void onUnitCreate(Unit unit) {
+    	if(unit.isBeingConstructed())
+    	{
+    		if(BuildOrder.buildOrder.peek().building.equals(unit.getType()))
+    		{
+    			BuildOrder.buildOrder.poll();
+    		}
+    	}
     }
 
     public static void main(String[] args) {
