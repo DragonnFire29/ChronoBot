@@ -69,6 +69,7 @@ public class CustomUI {
 				ChronoBot.game.drawTextScreen(350, 50, "M:" + BuildOrder.buildOrder.peek().building.mineralPrice() + " G:" + BuildOrder.buildOrder.peek().building.gasPrice());
 				ChronoBot.game.drawTextScreen(350, 60, "Reserved:");
 				ChronoBot.game.drawTextScreen(350, 70, "M:" + BuildOrder.reservedMineralCount + " G:" + BuildOrder.reservedGasCount);
+				ChronoBot.game.drawTextScreen(350, 80, "Building: " + BuildOrder.buildOrder.peek().isBuilding);
 			}
 			else
 			{

@@ -35,6 +35,9 @@ public class BuildOrder
 	//BOSub - Neural
 	public static final int BOSN_BRAIN1 = 0;
 	
+	public static int Type = 0;
+	public static int Sub = 0;
+	
 	public static Queue<BQSeg> buildOrder;
 	public static int reservedMineralCount = 0;
 	public static int reservedGasCount = 0;
@@ -51,6 +54,8 @@ public class BuildOrder
 	 */
 	public static void startBuildOrder (int BOType, int BOSub)
 	{
+		Type = BOType;
+		Sub = BOSub;
 		if(BOType == BOT_Static)
 		{
 			if(BOSub == BOSS_1FACTFE)
@@ -67,78 +72,77 @@ public class BuildOrder
 	{
 		//TODO: There must be a way to improve this. As of right now, it's ass.
 		//Check if buildOrder is empty, to prevent the bot from stopping for that frame.
+		//Also, check to see if we've sent another order already.
 		if(!buildOrder.isEmpty())
 		{
-			//Reserve gas and minerals for building construction
-			reservedMineralCount = buildOrder.peek().building.mineralPrice();
-			reservedGasCount = buildOrder.peek().building.gasPrice();
-			/*
-			 * Check if:
-			 * 		1. We have enough supply used to trigger the order
-			 * 		2. Our supply cap is high enough to trigger the order
-			 * 		3. We have enough minerals to trigger the order
-			 * 		4. We have enough gas to trigger the order
-			 */
-			if(buildOrder.peek().supplyAmount <= ChronoBot.self.supplyUsed() / 2 && buildOrder.peek().supplyCap <= ChronoBot.self.supplyTotal() / 2
-					&& buildOrder.peek().building.mineralPrice() <= ChronoBot.self.minerals() && buildOrder.peek().building.gasPrice() <= ChronoBot.self.gas())
+			if(!buildOrder.peek().isBuilding)
 			{
-				boolean validTargetFound = false;
-				//Cycle through units
-				for (Unit myUnit : ChronoBot.self.getUnits()) {
-					if(!myUnit.isConstructing())
-					{
-						//Look for a non-scout SCV, if we haven't already found one.
-						if (myUnit.getType() == UnitType.Terran_SCV && myUnit.getID() != ScoutingSystem.scoutID && validTargetFound == false
-								&& !myUnit.isConstructing()) {
-							//If the current order is for a Command Centre, find the nearest base to build from
-							if(buildOrder.peek().building == UnitType.Terran_Command_Center)
-							{
-								System.out.println("Building a Command Centre!");
-								int currentClosestBase = 0;
-								double distanceByAir = 99999999;
-								for(int b = 0; b < BWTA.getBaseLocations().size(); b++)
+				//Reserve gas and minerals for building construction
+				reservedMineralCount = buildOrder.peek().building.mineralPrice();
+				reservedGasCount = buildOrder.peek().building.gasPrice();
+				/*
+				 * Check if:
+				 * 		1. We have enough supply used to trigger the order
+				 * 		2. Our supply cap is high enough to trigger the order
+				 * 		3. We have enough minerals to trigger the order
+				 * 		4. We have enough gas to trigger the order
+				 */
+				if(buildOrder.peek().supplyAmount <= ChronoBot.self.supplyUsed() / 2 && buildOrder.peek().supplyCap <= ChronoBot.self.supplyTotal() / 2
+						&& buildOrder.peek().building.mineralPrice() <= ChronoBot.self.minerals() && buildOrder.peek().building.gasPrice() <= ChronoBot.self.gas())
+				{
+					//Cycle through units
+					for (Unit myUnit : ChronoBot.self.getUnits()) {
+						if(!myUnit.isConstructing())
+						{
+							//Look for a non-scout SCV, if we haven't already found one.
+							if (myUnit.getType() == UnitType.Terran_SCV && myUnit.getID() != ScoutingSystem.scoutID && !buildOrder.peek().isBuilding
+									&& !myUnit.isConstructing()) {
+								//If the current order is for a Command Centre, find the nearest base to build from
+								if(buildOrder.peek().building == UnitType.Terran_Command_Center)
 								{
-									if(!BaseManagement.baseArray[b].isOccupied())
+									System.out.println("Building a Command Centre!");
+									int currentClosestBase = 0;
+									double distanceByAir = 99999999;
+									for(int b = 0; b < BWTA.getBaseLocations().size(); b++)
 									{
-										if(distanceByAir < BWTA.getBaseLocations().get(b).getAirDistance(BWTA.getStartLocation(ChronoBot.self)))
+										if(!BaseManagement.baseArray[b].isOccupied())
 										{
-											distanceByAir = BWTA.getBaseLocations().get(b).getAirDistance(BWTA.getStartLocation(ChronoBot.self));
-											currentClosestBase = b;
+											if(distanceByAir < BWTA.getBaseLocations().get(b).getAirDistance(BWTA.getStartLocation(ChronoBot.self)))
+											{
+												distanceByAir = BWTA.getBaseLocations().get(b).getAirDistance(BWTA.getStartLocation(ChronoBot.self));
+												currentClosestBase = b;
+											}
 										}
 									}
+									myUnit.build(BWTA.getBaseLocations().get(currentClosestBase).getTilePosition(), UnitType.Terran_Command_Center);
+									buildOrder.peek().isBuilding = true;
 								}
-								myUnit.build(BWTA.getBaseLocations().get(currentClosestBase).getTilePosition(), UnitType.Terran_Command_Center);
-							}
-							else
-							{
-								System.out.println("Got an SCV, building my thing!");
-								myUnit.build(Misc.getBuildTile(myUnit, buildOrder.peek().building, ChronoBot.self.getStartLocation()), buildOrder.peek().building);
-								validTargetFound = true;
+								else
+								{
+									System.out.println("Got an SCV, building my thing!");
+									myUnit.build(Misc.getBuildTile(myUnit, buildOrder.peek().building, ChronoBot.self.getStartLocation()), buildOrder.peek().building);
+									buildOrder.peek().isBuilding = true;
+								}
 							}
 						}
 					}
-					else
-					{
-						validTargetFound = false;
-					}
 				}
-			}
-			
-			//Prevent supply blockage
-			//Check if we are (or near) supply block
-			if(ChronoBot.self.supplyTotal() - 2 < ChronoBot.self.supplyUsed())
-			{
-				//Check to make sure the next unit built is NOT a supply depot
-				if(!(buildOrder.peek().building.equals(UnitType.Terran_Supply_Depot)))
+				
+				//Prevent supply blockage
+				//Check if we are (or near) supply block
+				if(ChronoBot.self.supplyTotal() - 2 < ChronoBot.self.supplyUsed())
 				{
-					boolean SDUnderConstruction = false;
-					//Iterate over units to find any SCVs going to build or any supply depots under construction.
-					for(Unit u: ChronoBot.self.getUnits())
+					//Check to make sure the next unit built is NOT a supply depot
+					if(!(buildOrder.peek().building.equals(UnitType.Terran_Supply_Depot)))
 					{
-						//Check if we have already found one
-						if(!SDUnderConstruction)
+						//Iterate over units to find any SCVs going to build or any supply depots under construction.
+						for(Unit u: ChronoBot.self.getUnits())
 						{
-							//TODO: Finish the anti-supplyblock code
+							//Check if we have already found one
+							if(!buildOrder.peek().isBuilding)
+							{
+								//TODO: Finish the anti-supplyblock code
+							}
 						}
 					}
 				}

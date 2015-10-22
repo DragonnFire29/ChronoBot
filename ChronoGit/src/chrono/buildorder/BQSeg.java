@@ -7,6 +7,7 @@ public class BQSeg
 	public UnitType building;
 	public int supplyAmount;
 	public int supplyCap;
+	public boolean  isBuilding = false;
 	
 	public static final UnitType GENERATE_NEXT = UnitType.Hero_Alan_Schezar;
 	

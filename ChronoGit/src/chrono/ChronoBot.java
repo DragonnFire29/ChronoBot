@@ -83,7 +83,7 @@ public class ChronoBot extends DefaultBWListener {
     public void onUnitCreate(Unit unit) {
     	if(unit.isBeingConstructed())
     	{
-    		if(BuildOrder.buildOrder.peek().building.equals(unit.getType()))
+    		if(BuildOrder.buildOrder.peek().building.equals(unit.getType()) && BuildOrder.buildOrder.peek().isBuilding)
     		{
     			BuildOrder.buildOrder.poll();
     		}
