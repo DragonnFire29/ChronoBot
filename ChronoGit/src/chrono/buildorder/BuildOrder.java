@@ -119,7 +119,7 @@ public class BuildOrder
 								}
 								else
 								{
-									System.out.println("Got an SCV, building my thing!");
+									//System.out.println("Got an SCV, building my thing!");
 									myUnit.build(Misc.getBuildTile(myUnit, buildOrder.peek().building, ChronoBot.self.getStartLocation()), buildOrder.peek().building);
 									buildOrder.peek().isBuilding = true;
 								}

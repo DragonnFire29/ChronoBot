@@ -81,7 +81,18 @@ public class ChronoBot extends DefaultBWListener {
     
     @Override
     public void onUnitCreate(Unit unit) {
-    	if(unit.isBeingConstructed())
+    	if(unit.isBeingConstructed() && unit.getPlayer().equals(self))
+    	{
+    		if(BuildOrder.buildOrder.peek().building.equals(unit.getType()) && BuildOrder.buildOrder.peek().isBuilding)
+    		{
+    			BuildOrder.buildOrder.poll();
+    		}
+    	}
+    }
+    
+    @Override
+    public void onUnitMorph(Unit unit) {
+    	if(unit.isBeingConstructed() && unit.getPlayer().equals(self))
     	{
     		if(BuildOrder.buildOrder.peek().building.equals(unit.getType()) && BuildOrder.buildOrder.peek().isBuilding)
     		{

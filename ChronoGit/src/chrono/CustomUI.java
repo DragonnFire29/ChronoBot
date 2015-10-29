@@ -61,19 +61,19 @@ public class CustomUI {
 					}
 				}
 			}
-			ChronoBot.game.drawTextScreen(350, 20, "BUILD INFO");
+			ChronoBot.game.drawTextScreen(360, 20, "BUILD INFO");
 			if(!BuildOrder.buildOrder.isEmpty())
 			{
-				ChronoBot.game.drawTextScreen(350, 30, "Next unit: " + BuildOrder.buildOrder.peek().building.c_str());
-				ChronoBot.game.drawTextScreen(350, 40, "Supply Threshold: " + BuildOrder.buildOrder.peek().supplyAmount + "/" + BuildOrder.buildOrder.peek().supplyCap);
-				ChronoBot.game.drawTextScreen(350, 50, "M:" + BuildOrder.buildOrder.peek().building.mineralPrice() + " G:" + BuildOrder.buildOrder.peek().building.gasPrice());
-				ChronoBot.game.drawTextScreen(350, 60, "Reserved:");
-				ChronoBot.game.drawTextScreen(350, 70, "M:" + BuildOrder.reservedMineralCount + " G:" + BuildOrder.reservedGasCount);
-				ChronoBot.game.drawTextScreen(350, 80, "Building: " + BuildOrder.buildOrder.peek().isBuilding);
+				ChronoBot.game.drawTextScreen(360, 30, "Next unit: " + BuildOrder.buildOrder.peek().building.c_str());
+				ChronoBot.game.drawTextScreen(360, 40, "Supply Threshold: " + BuildOrder.buildOrder.peek().supplyAmount + "/" + BuildOrder.buildOrder.peek().supplyCap);
+				ChronoBot.game.drawTextScreen(360, 50, "M:" + BuildOrder.buildOrder.peek().building.mineralPrice() + " G:" + BuildOrder.buildOrder.peek().building.gasPrice());
+				ChronoBot.game.drawTextScreen(360, 60, "Reserved:");
+				ChronoBot.game.drawTextScreen(360, 70, "M:" + BuildOrder.reservedMineralCount + " G:" + BuildOrder.reservedGasCount);
+				ChronoBot.game.drawTextScreen(360, 80, "Building: " + BuildOrder.buildOrder.peek().isBuilding);
 			}
 			else
 			{
-				ChronoBot.game.drawTextScreen(350, 30, "No more Build Order!");
+				ChronoBot.game.drawTextScreen(360, 30, "No more Build Order!");
 			}
 		}
 		
